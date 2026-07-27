@@ -1,5 +1,10 @@
 # InfoNES
 
+## Note on porting
+There are many ported versions of InfoNES available.
+These excellent ports have fixed minor bugs present in the original version.
+As a list of these ports is provided below, please consider using them.
+
 ## Introduction
 InfoNES is a Family Computer emulator that runs on SDL/Linux.
 
@@ -59,7 +64,6 @@ This screenshot shows the demo running on InfoNES Advance, which runs on Virtual
 - Nintendo MMC: MMC1(#1), MMC2(#9), MMC3(#4), MMC4(#10), MMC5(#5)
 
 ## Known source ports
-
 InfoNES has been ported to various platforms.
 
 |Platform|Author|URL|
@@ -80,6 +84,7 @@ InfoNES has been ported to various platforms.
 |[Picopad](https://picopad.eu/en/index.html)|Miroslav Nemecek|[URL](https://www.breatharian.eu/hw/picolibsdk/index_en.html#nes)<br>[Twitter](https://x.com/TororoLab/status/1989999786641232124)|
 |A Virtual platform<br> with the standard RISC-V processor|Zdenek Prikryl and Pavel Snobl|[Paper](https://riscv-europe.org/summit/2025/media/proceedings/2025-05-13-RISC-V-Summit-Europe-P2.1.01-PRIKRYL-abstract.pdf)<br>[Poster](https://riscv-europe.org/summit/2025/media/proceedings/2025-05-13-RISC-V-Summit-Europe-P2.1.01-PRIKRYL-poster.pdf)|
 |PicoCalc|FuyukiYoneyama|[Github](https://github.com/FuyukiYoneyama/Picocalc_NESco)<br>[Twitter](https://x.com/YoneyamaFuyuki/status/2053446714808565929)|
+|TI-nspire CX II calculators|Malik Idrees Hasan Khan|[Github](https://github.com/mihkeymouse/NesNspire)<br>[hackster](https://www.hackster.io/malikidreeshasankhan/nesnspire-nes-emulator-for-ti-nspire-cx-ii-calculators-2ee0ad)|
 
 ## Disclaimer
 InfoNES is freeware. There is no guarantee. 
