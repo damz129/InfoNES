@@ -2,7 +2,10 @@
 
 ## Note on porting
 There are many ported versions of InfoNES available.
-These excellent ports, e.g. [pico-infones](https://github.com/shuichitakano/pico-infones), have fixed minor bugs present in the original version.
+These excellent ports, e.g. 
+[pico-infones](https://github.com/shuichitakano/pico-infones),
+[pico-infonesPlus](https://github.com/fhoedemakers/pico-infonesPlus), 
+have fixed minor bugs present in the original version.
 As a list of these ports is provided below, please consider using them.
 
 ## Introduction
