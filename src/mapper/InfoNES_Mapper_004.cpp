@@ -242,7 +242,7 @@ void Map4_HSync()
       Map4_IRQ_Cnt--;
     }
 
-    if ( Map4_IRQ_Cnt == 0 && Map4_IRQ_Enable ) {
+    if ( ( Map4_IRQ_Cnt == 0 || Map4_IRQ_Cnt == 0xFF ) && Map4_IRQ_Enable ) {
       Map4_IRQ_Request = 0xFF;
     }
   }
