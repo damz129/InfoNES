@@ -203,16 +203,8 @@ void Map4_Write( WORD wAddr, BYTE byData )
 
     case 0xc001:
       Map4_Regs[ 5 ] = byData;
-      if ( PPU_Scanline < 240 )
-      {
-          Map4_IRQ_Cnt |= 0x80;
-          Map4_IRQ_Present = 0xff;
-      } else {
-          Map4_IRQ_Cnt |= 0x80;
-          Map4_IRQ_Present_Vbl = 0xff;
-          Map4_IRQ_Present = 0;
-      }
-      break;
+	  Map4_IRQ_Present = 0xff; 
+	  break;
 
     case 0xe000:
       Map4_Regs[ 6 ] = byData;
