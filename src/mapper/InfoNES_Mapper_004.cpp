@@ -185,9 +185,9 @@ void Map4_Write( WORD wAddr, BYTE byData )
       {
         if ( byData & 0x01 )
         {
-          InfoNES_Mirroring( 0 );
-        } else {
           InfoNES_Mirroring( 1 );
+        } else {
+          InfoNES_Mirroring( 0 );
         }
       }
       break;
@@ -237,31 +237,29 @@ void Map4_HSync()
  *  Callback at HSync
  *
  */
-  if ( ( /* 0 <= PPU_Scanline && */ PPU_Scanline <= 239 ) && 
-       ( PPU_R1 & R1_SHOW_SCR || PPU_R1 & R1_SHOW_SP ) )
+  if ( ( PPU_Scanline <= 239 ) && ( PPU_R1 & R1_SHOW_SCR || PPU_R1 & R1_SHOW_SP ) )
   {
-		if( Map4_IRQ_Present_Vbl ) {
-			Map4_IRQ_Cnt = Map4_IRQ_Latch;
-			Map4_IRQ_Present_Vbl = 0;
-		}
-		if( Map4_IRQ_Present ) {
-			Map4_IRQ_Cnt = Map4_IRQ_Latch;
-			Map4_IRQ_Present = 0;
-		} else if( Map4_IRQ_Cnt > 0 ) {
-			Map4_IRQ_Cnt--;
-		}
+    if ( Map4_IRQ_Present ) {
+      Map4_IRQ_Cnt = Map4_IRQ_Latch;
+      Map4_IRQ_Present = 0;
+    } 
+    else if ( Map4_IRQ_Cnt == 0 ) {
+      Map4_IRQ_Cnt = Map4_IRQ_Latch;
+    } 
+    else {
+      Map4_IRQ_Cnt--;
+    }
 
-		if( Map4_IRQ_Cnt == 0 ) {
-			if( Map4_IRQ_Enable ) {
-				Map4_IRQ_Request = 0xFF;
-			}
-			Map4_IRQ_Present = 0xFF;
-		}
-	}
-	if( Map4_IRQ_Request  ) {
-		IRQ_REQ;
-	}
+    if ( Map4_IRQ_Cnt == 0 && Map4_IRQ_Enable ) {
+      Map4_IRQ_Request = 0xFF;
+    }
+  }
+
+  if ( Map4_IRQ_Request ) {
+    IRQ_REQ;
+  }
 }
+
 
 /*-------------------------------------------------------------------*/
 /*  Mapper 4 Set CPU Banks Function                                  */
