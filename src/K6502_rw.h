@@ -286,35 +286,33 @@ static inline void K6502_Write( WORD wAddr, BYTE byData )
           PPU_Latch_Flag ^= 1;
           break;
 
-case 6:   /* 0x2006 */
+        case 6:   /* 0x2006 */
           // Set PPU Address
           if ( PPU_Latch_Flag )
           {
+            /* Low */
+#if 0
+            PPU_Addr = ( PPU_Addr & 0xff00 ) | ( (WORD)byData );
+#else
             PPU_Temp = ( PPU_Temp & 0xFF00 ) | ( ( (WORD)byData ) & 0x00FF);
-            PPU_Addr = PPU_Temp;
-
-            if ( !( PPU_R2 & R2_IN_VBLANK ) && PPU_Scanline <= 239 ) 
-            {
-              PPU_NameTableBank = NAME_TABLE0 + ( ( PPU_Addr & 0x0C00 ) >> 10 );
-              
-              PPU_Scr_V_Byte = ( BYTE )( ( PPU_Addr & 0x03e0 ) >> 5 );
-              PPU_Scr_V_Byte_Next = PPU_Scr_V_Byte;
-              
-              PPU_Scr_V_Bit = ( BYTE )( ( PPU_Addr & 0x7000 ) >> 12 );
-              PPU_Scr_V_Bit_Next = PPU_Scr_V_Bit;
-
-              PPU_Scr_V = ( PPU_Scr_V_Byte << 3 ) | PPU_Scr_V_Bit;
-
-              InfoNES_SetupScr();
-            }
+	    PPU_Addr = PPU_Temp;
+#endif
+	    if ( !( PPU_R2 & R2_IN_VBLANK ) ) {
+	      InfoNES_SetupScr();
+	    }
           }
           else
           {
+            /* High */
+#if 0
+            PPU_Addr = ( PPU_Addr & 0x00ff ) | ( (WORD)( byData & 0x3f ) << 8 );
+            InfoNES_SetupScr();
+#else
             PPU_Temp = ( PPU_Temp & 0x00FF ) | ( ( ((WORD)byData) & 0x003F ) << 8 );
+#endif            
           }
           PPU_Latch_Flag ^= 1;
           break;
-
 
         case 7:   /* 0x2007 */
           {
